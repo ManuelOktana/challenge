@@ -1,10 +1,16 @@
 .risk-chart {
-  padding: 30px;
+  padding: 20px;
 }
 .risk-chart__slider {
+  margin: 0 auto;
   margin-top: 30px;
+  width: 70%;
 }
-.input-range__label-container {
-  font-size: 1em;
+.slider-label {
+  color: #7f7f7f;
 }
-
+@media screen and (max-width: 600px) {
+  .risk-chart__slider {
+    width: 95%;
+  }
+}

@@ -10,28 +10,80 @@ const chartOptions = {
   legend: {
     position: 'top'
   },
-  maintainAspectRatio: true,
-  responsive:true
-
+  maintainAspectRatio: false,
+  responsive: true
 }
-export const Chart = (props) => (
-  <div className='risk-chart'>
-    <div className='row risk-chart__chart'>
-      <h2>Risk Level {props.riskLevel}</h2>
-      <Doughnut width={100} height={100} data={props.chartData} options={chartOptions} />
-    </div>
-    <div className='row risk-chart__slider'>
-      <InputRange
+class Chart extends React.Component {
 
-        formatLabel={value => `Risk ${value}`}
-        maxValue={props.riskLevelsCount}
-        minValue={1}
-        value={props.riskLevel}
-        onChange={value => props.changeRiskLevel({ value })} />
-    </div>
-  </div>
-)
+  constructor (props) {
+    super(props)
+    this.timer = false
+    this.state = {
+      width: 300,
+      height: 300,
+      resizing: false
+    }
+  }
 
+  _calculateDimensions = () => {
+    let width = window.innerWidth ||
+      document.documentElement.clientWidth||
+      document.body.clientWidth
+
+    let height = window.innerHeight ||
+      document.documentElement.clientHeight ||
+      document.body.clientHeight
+    let size = Math.min(width, height) * 0.4
+    return size
+  }
+
+  componentDidMount () {
+    const size = this._calculateDimensions()
+    this.setState({ width: size, height: size })
+
+    window.onresize = () => {
+      this.setState({ resizing: true })
+      if (this.timmer) {
+        clearTimeout(this.timmer)
+      }
+      this.timmer = setTimeout(() => {
+        const size = this._calculateDimensions()
+        this.setState({ width: size, height: size, resizing: false })
+      }, 500)
+    }
+  }
+
+  render () {
+    let { props } = this
+    const toRender = <div>
+      <div className='row risk-chart__chart'>
+        <h2>Risk Level {props.riskLevel}</h2>
+
+        <Doughnut
+          width={this.state.width}
+          height={this.state.height}
+          data={props.chartData}
+          options={chartOptions} />
+      </div>
+      <div className='row risk-chart__slider'>
+        <InputRange
+          maxValue={props.riskLevelsCount}
+          minValue={1}
+          value={props.riskLevel}
+          onChange={value => props.changeRiskLevel({ value })} />
+      </div>
+      <div className='row slider-label'>
+        <h3>Risk Slider</h3>
+      </div>
+    </div>
+    return (
+
+      <div className='risk-chart row'>
+        {(this.state.resizing) ? 'Loading...' : toRender }
+      </div>
+    )
+  }
+}
 Chart.propTypes = {
   chartData: PropTypes.object,
   riskLevel: PropTypes.number,
