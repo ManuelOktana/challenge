@@ -1,6 +1,6 @@
 import React from 'react'
 import { bindActionCreators } from 'redux'
-import { Chart } from 'routes/Portfolio/components/Chart'
+import Chart from 'routes/Portfolio/components/Chart'
 import { shallow } from 'enzyme'
 
 describe('(Component) Chart', () => {
@@ -12,8 +12,6 @@ describe('(Component) Chart', () => {
     _props = {
       riskLevel : 1,
       ...bindActionCreators({
-        doubleAsync : (_spies.doubleAsync = sinon.spy()),
-        increment   : (_spies.increment = sinon.spy())
       }, _spies.dispatch = sinon.spy())
     }
     _wrapper = shallow(<Chart {..._props} />)

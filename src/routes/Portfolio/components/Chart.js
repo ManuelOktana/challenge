@@ -27,7 +27,7 @@ class Chart extends React.Component {
 
   _calculateDimensions = () => {
     let width = window.innerWidth ||
-      document.documentElement.clientWidth||
+      document.documentElement.clientWidth ||
       document.body.clientWidth
 
     let height = window.innerHeight ||
