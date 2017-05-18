@@ -19,7 +19,7 @@ Then install dependencies and check to see it works. It is recommended that you 
 $ yarn install    # Install project dependencies
 $ yarn start      # Compile and launch (same as `npm start`)
 ```
-If everything works, you should see the following:
+If everything works, you must navigate to http://localhost:3000
 
 
 ### Run Tests
