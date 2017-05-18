@@ -10,18 +10,21 @@ const chartOptions = {
   legend: {
     position: 'top'
   },
-  maintainAspectRatio: false,
+  maintainAspectRatio: true,
   responsive:true
+
 }
 export const Chart = (props) => (
   <div className='risk-chart'>
-    <div className='risk-chart__chart'>
+    <div className='row risk-chart__chart'>
       <h2>Risk Level {props.riskLevel}</h2>
-      <Doughnut width={100} height={250} data={props.chartData} options={chartOptions} />
+      <Doughnut width={100} height={100} data={props.chartData} options={chartOptions} />
     </div>
-    <div className='risk-chart__slider'>
+    <div className='row risk-chart__slider'>
       <InputRange
-        maxValue={8}
+
+        formatLabel={value => `Risk ${value}`}
+        maxValue={props.riskLevelsCount}
         minValue={1}
         value={props.riskLevel}
         onChange={value => props.changeRiskLevel({ value })} />
@@ -32,7 +35,8 @@ export const Chart = (props) => (
 Chart.propTypes = {
   chartData: PropTypes.object,
   riskLevel: PropTypes.number,
-  changeRiskLevel: PropTypes.func
+  changeRiskLevel: PropTypes.func,
+  riskLevelsCount: PropTypes.number
 }
 
 export default Chart

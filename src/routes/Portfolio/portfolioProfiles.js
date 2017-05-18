@@ -314,6 +314,84 @@ const portfolio = [
         ]
       }]
     }
+  },
+  {
+    riskLevel: 9,
+    chartData: {
+      labels: [
+        'Stocks',
+        'Bonds',
+        'ETFs',
+        'Cash',
+        'Commodities',
+        'Fixed Income'
+      ],
+      datasets: [{
+        data: [
+          getRandomInt(50, 200),
+          getRandomInt(100, 150),
+          getRandomInt(50, 250),
+          getRandomInt(180, 200),
+          getRandomInt(10, 50),
+          getRandomInt(70, 130)
+        ],
+        backgroundColor: [
+          '#a82a25',
+          '#36A2EB',
+          '#FFCE56',
+          '#26a849',
+          '#0d72a5',
+          '#e21257'
+        ],
+        hoverBackgroundColor: [
+          '#a82a25',
+          '#36A2EB',
+          '#FFCE56',
+          '#26a849',
+          '#0d72a5',
+          '#e21257'
+        ]
+      }]
+    }
+  },
+  {
+    riskLevel: 10,
+    chartData: {
+      labels: [
+        'Stocks',
+        'Bonds',
+        'ETFs',
+        'Cash',
+        'Commodities',
+        'Fixed Income'
+      ],
+      datasets: [{
+        data: [
+          getRandomInt(50, 200),
+          getRandomInt(100, 150),
+          getRandomInt(50, 250),
+          getRandomInt(180, 200),
+          getRandomInt(10, 50),
+          getRandomInt(70, 130)
+        ],
+        backgroundColor: [
+          '#a82a25',
+          '#36A2EB',
+          '#FFCE56',
+          '#26a849',
+          '#0d72a5',
+          '#e21257'
+        ],
+        hoverBackgroundColor: [
+          '#a82a25',
+          '#36A2EB',
+          '#FFCE56',
+          '#26a849',
+          '#0d72a5',
+          '#e21257'
+        ]
+      }]
+    }
   }
 ]
 

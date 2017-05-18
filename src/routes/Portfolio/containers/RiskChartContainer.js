@@ -22,9 +22,14 @@ const riskDataSelector = createSelector(riskState,
     riskState.profiles.filter((chartData) =>
     chartData.riskLevel === riskState.selectedRisk).pop().chartData)
 
+const riskLevelsCount = createSelector(riskState,
+  (riskState) =>
+    riskState.profiles.length)
+
 const mapStateToProps = (state) => ({
   riskLevel : state.risk.selectedRisk,
-  chartData : riskDataSelector(state)
+  chartData : riskDataSelector(state),
+  riskLevelsCount: riskLevelsCount(state)
 })
 
 /*  Note: mapStateToProps is where you should use `reselect` to create selectors, ie:
